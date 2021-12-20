@@ -1,10 +1,12 @@
 # openindoor-josm-plugin
 
-![From JOSM to https:/app.openindoor.io](Screenshot.png?raw=true "From JOSM to https:/app.openindoor.io")
+![From JOSM to indoor view](Screenshot.png?raw=true "From JOSM to indoor view")
 
 ![Menu](Menu.png?raw=true "Menu")
 
-This plugin lets you visualize in 3D your JOSM indoor data inside OpenIndoor web app.
+This plugin lets you visualize your JOSM indoor data:
+- inside OpenIndoor 3D web app
+- inside IndorEqual web app
 
 ## Manual installation
 
@@ -12,7 +14,7 @@ See https://wiki.openstreetmap.org/wiki/JOSM/Plugins
 
 Download: https://github.com/open-indoor/openindoor-josm-plugin/releases/tag/v1.0.0
 
-Save plugin jar files in the plugins directory in the JOSM settings directory.
+Save plugin jar files in the JOSM plugins directory.
 
 ### Windows
 
@@ -25,4 +27,3 @@ Save plugin jar files in the plugins directory in the JOSM settings directory.
 ### MacOS
 
 `Users/<YourName>/Library/JOSM/plugins`
-
