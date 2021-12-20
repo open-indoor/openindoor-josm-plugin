@@ -3,6 +3,7 @@ package org.openstreetmap.josm.plugins.openindoor;
 
 import java.awt.Image;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -12,6 +13,9 @@ import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+
+import java.net.UnknownHostException;
+import java.net.InetAddress;
 
 import org.openstreetmap.josm.actions.ExtensionFileFilter;
 import org.openstreetmap.josm.gui.MainApplication;
@@ -25,8 +29,16 @@ import org.openstreetmap.josm.io.session.SessionReader;
 import org.openstreetmap.josm.io.session.SessionWriter;
 import org.openstreetmap.josm.plugins.Plugin;
 import org.openstreetmap.josm.plugins.PluginInformation;
+
+import org.openstreetmap.josm.plugins.openindoor.OIDAction;
+import org.openstreetmap.josm.plugins.openindoor.IndoorEqualAction;
+
 import org.openstreetmap.josm.tools.Pair;
 import org.openstreetmap.josm.tools.ResourceProvider;
+
+import org.openstreetmap.josm.plugins.openindoor.Server;
+
+// import fi.iki.elonen.NanoHTTPD;
 
 /**
  * OpenIndoor plugin.
@@ -34,11 +46,31 @@ import org.openstreetmap.josm.tools.ResourceProvider;
 public final class OIDPlugin extends Plugin {
 
     private static OIDPlugin instance;
+    private static int PORT = 8432;
 
     public OIDPlugin(PluginInformation info) {
         super(info);
         if (instance == null) {
             instance = this;
+            try {
+                System.out.println("\n====================Server Details====================");
+                System.out.println("Server Machine: " + InetAddress.getLocalHost().getCanonicalHostName());
+                System.out.println("Port number: " + PORT);
+                System.out.println();
+            } catch (UnknownHostException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+            //Here one instance of server is started..	
+            try {	
+                Server server = new Server(PORT);
+                server.start();
+                // server.start();
+            } catch (IOException e) {
+                System.err.println("Error occured:" + e.getMessage());
+                System.exit(0);
+            }
+            refreshMenu();
         } else {
             throw new IllegalStateException("Cannot instantiate plugin twice !");
         }
@@ -47,4 +79,15 @@ public final class OIDPlugin extends Plugin {
     public static OIDPlugin getInstance() {
         return instance;
     }
+
+    public static void refreshMenu() {
+        JMenu menu = MainApplication.getMenu().moreToolsMenu;
+        if (menu.isVisible())
+            menu.addSeparator();
+        else {
+            menu.setVisible(true);
+        }
+        menu.add(new JMenuItem(new OIDAction()));
+        menu.add(new JMenuItem(new IndoorEqualAction()));
+        }
 }
