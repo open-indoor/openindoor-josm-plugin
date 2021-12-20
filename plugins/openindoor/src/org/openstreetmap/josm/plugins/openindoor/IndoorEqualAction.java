@@ -39,8 +39,8 @@ import org.openstreetmap.josm.tools.Logging;
 public class IndoorEqualAction extends JosmAction {
 
     public IndoorEqualAction() {
-        super(tr("Drop to IndoorEqual..."), null,
-                tr("Drop current layer to IndoorEqual web app"), null, false);
+        super(tr("View in Indoor=..."), null,
+                tr("View current layer in IndoorEqual web app"), null, false);
     }
 
     @Override

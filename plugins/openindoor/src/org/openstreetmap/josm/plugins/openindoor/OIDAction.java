@@ -39,8 +39,8 @@ import org.openstreetmap.josm.tools.Logging;
 public class OIDAction extends JosmAction {
 
     public OIDAction() {
-        super(tr("Drop to OpenIndoor..."), null,
-                tr("Drop current layer to OpenIndoor web app"), null, false);
+        super(tr("View in OpenIndoor..."), null,
+                tr("View current layer in OpenIndoor web app"), null, false);
     }
 
     @Override
@@ -71,7 +71,7 @@ public class OIDAction extends JosmAction {
                 // Launch OpenIndoor web app in detached mode
                 if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
                     try {
-                        Desktop.getDesktop().browse(new URI("https://app-dev.openindoor.io/?source=josm"));
+                        Desktop.getDesktop().browse(new URI("https://app.openindoor.io/?source=josm"));
                     } catch (Exception e) {
                         Logging.error(e);
                     }
