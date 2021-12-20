@@ -1,6 +1,8 @@
 # openindoor-josm-plugin
 
-![From JOSM to https:/app.openindoor.io](Screenshot.png?raw=true "From JOSM to https:/app.openindoor.i")
+![From JOSM to https:/app.openindoor.io](Screenshot.png?raw=true "From JOSM to https:/app.openindoor.io")
+
+![Menu](Menu.png?raw=true "Menu")
 
 This plugin lets you visualize in 3D your JOSM indoor data inside OpenIndoor web app.
 
