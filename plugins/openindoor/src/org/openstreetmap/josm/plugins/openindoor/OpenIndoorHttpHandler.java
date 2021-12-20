@@ -14,15 +14,17 @@ import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 
+import org.openstreetmap.josm.tools.Logging;
+
 /**
  * @author ambarmodi
  *
  */
-public class HttpHandler implements Runnable {
+public class OpenIndoorHttpHandler implements Runnable {
 	private Socket socket;
 	private String res;
 	
-	public HttpHandler(Socket socket) {
+	public OpenIndoorHttpHandler(Socket socket) {
 		this.res = null;
 		this.socket = socket;
 	}
@@ -31,15 +33,13 @@ public class HttpHandler implements Runnable {
 		try {
 			handleRequest();
 		} catch (Exception e) {
-			System.err.println("Error Occured: " + e.getMessage());
+			Logging.error("Error Occured: " + e.getMessage());
 			try {
 				socket.close();
-				System.exit(0);
 			} catch (IOException e1) {
-				System.err.println("Error Closing socket Connection.");
-				System.exit(0);
+				Logging.error("Error Closing socket Connection.");
 			}
-			System.err.println("Server is Terminating!");
+			Logging.error("OpenIndoor  is Terminating!");
 		}	
 	}
 

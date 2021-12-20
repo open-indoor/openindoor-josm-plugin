@@ -30,45 +30,41 @@ import org.openstreetmap.josm.io.session.SessionWriter;
 import org.openstreetmap.josm.plugins.Plugin;
 import org.openstreetmap.josm.plugins.PluginInformation;
 
-import org.openstreetmap.josm.plugins.openindoor.OIDAction;
+import org.openstreetmap.josm.plugins.openindoor.OpenIndoorAction;
 import org.openstreetmap.josm.plugins.openindoor.IndoorEqualAction;
 
 import org.openstreetmap.josm.tools.Pair;
 import org.openstreetmap.josm.tools.ResourceProvider;
 
-import org.openstreetmap.josm.plugins.openindoor.Server;
+import org.openstreetmap.josm.plugins.openindoor.OpenIndoorServer;
+import org.openstreetmap.josm.tools.Logging;
 
 // import fi.iki.elonen.NanoHTTPD;
 
 /**
  * OpenIndoor plugin.
  */
-public final class OIDPlugin extends Plugin {
+public final class OpenIndoorPlugin extends Plugin {
 
-    private static OIDPlugin instance;
+    private static OpenIndoorPlugin instance;
     private static int PORT = 8432;
 
-    public OIDPlugin(PluginInformation info) {
+    public OpenIndoorPlugin(PluginInformation info) {
         super(info);
         if (instance == null) {
             instance = this;
             try {
-                System.out.println("\n====================Server Details====================");
-                System.out.println("Server Machine: " + InetAddress.getLocalHost().getCanonicalHostName());
-                System.out.println("Port number: " + PORT);
-                System.out.println();
+                Logging.info("\n====================OpenIndoor Server Details====================");
+                Logging.info("OpenIndoor Server Machine: " + InetAddress.getLocalHost().getCanonicalHostName());
+                Logging.info("Port number: " + PORT);
             } catch (UnknownHostException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
-            //Here one instance of server is started..	
             try {	
-                Server server = new Server(PORT);
+                OpenIndoorServer server = new OpenIndoorServer(PORT);
                 server.start();
-                // server.start();
             } catch (IOException e) {
-                System.err.println("Error occured:" + e.getMessage());
-                System.exit(0);
+                Logging.error("Error occured:" + e.getMessage());
             }
             refreshMenu();
         } else {
@@ -76,7 +72,7 @@ public final class OIDPlugin extends Plugin {
         }
     }
     
-    public static OIDPlugin getInstance() {
+    public static OpenIndoorPlugin getInstance() {
         return instance;
     }
 
@@ -87,7 +83,7 @@ public final class OIDPlugin extends Plugin {
         else {
             menu.setVisible(true);
         }
-        menu.add(new JMenuItem(new OIDAction()));
+        menu.add(new JMenuItem(new OpenIndoorAction()));
         menu.add(new JMenuItem(new IndoorEqualAction()));
         }
 }

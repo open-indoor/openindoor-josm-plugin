@@ -7,21 +7,15 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.HashMap;
 
-import org.openstreetmap.josm.plugins.openindoor.HttpHandler;
+import org.openstreetmap.josm.plugins.openindoor.OpenIndoorHttpHandler;
+import org.openstreetmap.josm.tools.Logging;
 
-/**
- * @author ambarmodi
- *
- */
-// public class Server {
-public class Server extends Thread {
-	// private static int PORT = 8080;
+public class OpenIndoorServer extends Thread {
 	private ServerSocket serverSocket;
 	private static HashMap<String,Integer> requestedRes = new HashMap<String,Integer>();
 	private static final String DELIMITER = "|";
 	
-	public Server(int port) throws IOException {
-		// PORT = port;
+	public OpenIndoorServer(int port) throws IOException {
 		serverSocket = new ServerSocket(port);
 	}
 
@@ -31,7 +25,7 @@ public class Server extends Thread {
 	private void start_() throws IOException {
 		while (true) {
 			Socket socket = serverSocket.accept();
-			HttpHandler connection = new HttpHandler(socket);
+			OpenIndoorHttpHandler connection = new OpenIndoorHttpHandler(socket);
 
 			Thread request = new Thread(connection);
 			request.start();
@@ -42,8 +36,7 @@ public class Server extends Thread {
 		try {
 			this.start_();
 		} catch (IOException e1) {
-			System.err.println(e1.getMessage());
-			System.exit(0);
+			Logging.error(e1.getMessage());
 		}
 	}
 
@@ -60,6 +53,6 @@ public class Server extends Thread {
 		} else {
 			requestedRes.put(res, requestedRes.get(res) + 1);
 		}
-		System.out.println(res + DELIMITER+ ipAddress + DELIMITER + port2 +DELIMITER + requestedRes.get(res));
+		Logging.info(res + DELIMITER+ ipAddress + DELIMITER + port2 +DELIMITER + requestedRes.get(res));
 	}
 }

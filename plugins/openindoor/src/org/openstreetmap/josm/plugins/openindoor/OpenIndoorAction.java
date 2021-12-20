@@ -36,9 +36,9 @@ import org.openstreetmap.josm.gui.io.importexport.OsmExporter;
 
 import org.openstreetmap.josm.tools.Logging;
 
-public class OIDAction extends JosmAction {
+public class OpenIndoorAction extends JosmAction {
 
-    public OIDAction() {
+    public OpenIndoorAction() {
         super(tr("View in OpenIndoor..."), null,
                 tr("View current layer in OpenIndoor web app"), null, false);
     }
