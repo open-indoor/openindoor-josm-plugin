@@ -4,11 +4,11 @@
 
 This plugin lets you visualize in 3D your JOSM indoor data inside OpenIndoor web app.
 
-https://github.com/open-indoor/openindoor-josm-plugin/releases/tag/v1.0.0
-
 ## Manual installation
 
 See https://wiki.openstreetmap.org/wiki/JOSM/Plugins
+
+Download: https://github.com/open-indoor/openindoor-josm-plugin/releases/tag/v1.0.0
 
 Save plugin jar files in the plugins directory in the JOSM settings directory.
 
