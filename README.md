@@ -12,7 +12,7 @@ This plugin lets you visualize your JOSM indoor data:
 
 See https://wiki.openstreetmap.org/wiki/JOSM/Plugins
 
-Download: https://github.com/open-indoor/openindoor-josm-plugin/releases/tag/v1.0.0
+Download: https://github.com/open-indoor/openindoor-josm-plugin/releases
 
 Save plugin jar files in the JOSM plugins directory.
 
